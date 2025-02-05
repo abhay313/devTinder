@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const { adminAuth } = require("./middlewares/auth");
 const app = express();
 const connectDB = require("./config/database");
@@ -54,7 +55,7 @@ app.patch("/user/:userId", async (req, res) => {
 connectDB()
   .then(() => {
     console.log("Database is connected");
-    app.listen(7777, () => {
+    app.listen(process.env.PORT, () => {
       console.log("Server running on port 7777!");
     });
   })
