@@ -4,8 +4,10 @@ const { adminAuth } = require("./middlewares/auth");
 const app = express();
 const connectDB = require("./config/database");
 const cors = require("cors");
+const http = require("http");
 
 const cookieParser = require("cookie-parser");
+require("./utils/cronjob");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -20,6 +22,7 @@ const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
 const useRouter = require("./routes/user");
+const initializeSocket = require("./utils/socket");
 
 app.use("/", authRouter);
 app.use("/", profileRouter);
@@ -52,10 +55,13 @@ app.patch("/user/:userId", async (req, res) => {
   }
 });
 
+const server = http.createServer(app);
+initializeSocket(server);
+
 connectDB()
   .then(() => {
     console.log("Database is connected");
-    app.listen(process.env.PORT, () => {
+    server.listen(process.env.PORT, () => {
       console.log("Server running on port 7777!");
     });
   })

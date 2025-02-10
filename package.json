@@ -14,14 +14,19 @@
   "author": "Abhay Yadav",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-ses": "^3.741.0",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cookies-parser": "^1.2.0",
     "cors": "^2.8.5",
+    "data-fns": "^1.1.0",
+    "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.4",
+    "node-cron": "^3.0.3",
+    "socket.io": "^4.8.1",
     "validator": "^13.12.0"
   }
 }
